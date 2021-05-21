@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <title>ToDo</title>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">YouDo</a>
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <form action="" id="add-todo-form" style="margin-top:30px;">
+        <input type="text" name="title" placeholder="Add task">
+        <button class="waves-effect waves-light btn">Add Task</button>
+      </form>
+
+      <ul id="todo-list" class="collection" style="margin-top:20px;">
+
+      </ul>
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <input type="text" name="newtitle" placeholder="Update Task">
+        </div>
+        <div class="modal-footer">
+          <a href="#!" id="update" class="modal-close waves-effect waves-green btn-flat">Update</a>
+        </div>
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var elems = document.querySelectorAll('.modal');
+          var instances = M.Modal.init(elems);
+        });
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyCBAn8BOdSiDRr87eM_-rKIZjdLpWglH94",
+          authDomain: "todolist-23b4e.firebaseapp.com",
+          projectId: "todolist-23b4e",
+          storageBucket: "todolist-23b4e.appspot.com",
+          messagingSenderId: "49410084061",
+          appId: "1:49410084061:web:400beb41e3c539c15adf34"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+      </script>
+      <script src="app.js"></script>
+
+    </div>
+  </body>
+
+</html>
