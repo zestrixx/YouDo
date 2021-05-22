@@ -18,6 +18,8 @@
       src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
     <script
       src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
@@ -25,32 +27,90 @@
   </head>
 
   <body>
+
+    <!-- ################# navigation bar ############## -->
     <nav>
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">YouDo</a>
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo right">YouDo</a>
+        <ul>
+          <li class="logged-in"><a href="#" id="logout">Logout</a></li>
+          <li class="logged-out"><a href="#" class="modal-trigger"
+              data-target="modal-login">Login</a></li>
+          <li class="logged-out"><a href="#" class="modal-trigger"
+              data-target="modal-signup">Signup</a></li>
+        </ul>
       </div>
     </nav>
 
-
+    <!-- ############## add task form ############ -->
     <div class="container">
       <form action="" id="add-todo-form" style="margin-top:30px;">
         <input type="text" name="title" placeholder="Add task">
         <button class="waves-effect waves-light btn">Add Task</button>
       </form>
 
+      <!-- ###### tasks list which will get appended from firestore ###### -->
       <ul id="todo-list" class="collection" style="margin-top:20px;">
 
       </ul>
 
-      <!-- Modal Structure -->
-      <div id="modal1" class="modal">
+      <!-- ####### modals for login, signup, tasks modification ###### -->
+      <!-- Update Modal Structure -->
+      <div id="modal-edit" class="modal">
         <div class="modal-content">
           <input type="text" name="newtitle" placeholder="Update Task">
         </div>
         <div class="modal-footer">
-          <a href="#!" id="update" class="modal-close waves-effect waves-green btn-flat">Update</a>
+          <a href="#!" id="update"
+            class="modal-close waves-effect waves-green btn-flat">Update</a>
         </div>
       </div>
+
+      <!-- Login Modal Structure -->
+      <div id="modal-login" class="modal">
+        <div class="modal-content">
+          <h4 style="margin-bottom: 30px;">Login</h4>
+          <form action="">
+            <div class="input-field">
+              <input type="email" id="login-email" required>
+              <label>Email Address</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="login-password">
+              <label>Password</label>
+            </div>
+            <p class="error pink-text center-align"></p>
+            <div class="modal-footer">
+              <button href="#!" style="margin: 0 30px 0 0;"
+                class="waves-effect waves-green btn">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Signup Modal Structure -->
+      <div id="modal-signup" class="modal">
+        <div class="modal-content">
+          <h4 style="margin-bottom: 30px;">Signup</h4>
+          <form action="" id="signup-form">
+            <div class="input-field">
+              <input type="email" id="signup-email" required>
+              <label>Email Address</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="signup-password">
+              <label>Password</label>
+            </div>
+            <p class="error pink-text center-align"></p>
+            <div class="modal-footer">
+              <button href="#!" style="margin: 0 30px 0 0;"
+                class="waves-effect waves-green btn">Signup</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ############### javascript code ############## -->
       <script>
         document.addEventListener('DOMContentLoaded', function () {
           var elems = document.querySelectorAll('.modal');
@@ -69,8 +129,10 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        const auth = firebase.auth();
       </script>
       <script src="app.js"></script>
+      <script src="auth.js"></script>
 
     </div>
   </body>
