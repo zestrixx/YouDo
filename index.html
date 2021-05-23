@@ -34,6 +34,7 @@
         <a href="#" class="brand-logo right">YouDo</a>
         <ul>
           <li class="logged-in"><a href="#" id="logout">Logout</a></li>
+          <li class="logged-in"><a href="#" id="user-email"></a></li>
           <li class="logged-out"><a href="#" class="modal-trigger"
               data-target="modal-login">Login</a></li>
           <li class="logged-out"><a href="#" class="modal-trigger"
@@ -44,7 +45,7 @@
 
     <!-- ############## add task form ############ -->
     <div class="container">
-      <form action="" id="add-todo-form" style="margin-top:30px;">
+      <form action="" id="add-todo-form" class="logged-in" style="margin-top:30px;">
         <input type="text" name="title" placeholder="Add task">
         <button class="waves-effect waves-light btn">Add Task</button>
       </form>
@@ -70,7 +71,7 @@
       <div id="modal-login" class="modal">
         <div class="modal-content">
           <h4 style="margin-bottom: 30px;">Login</h4>
-          <form action="">
+          <form action="" id="login-form">
             <div class="input-field">
               <input type="email" id="login-email" required>
               <label>Email Address</label>
