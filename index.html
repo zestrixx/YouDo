@@ -24,118 +24,156 @@
       rel="stylesheet">
 
     <title>ToDo</title>
+
+    <!-- ########### style to stick the footer at the bottom ########## -->
+
+    <style>
+      body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1 0 auto;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
   </head>
 
   <body>
-
-    <!-- ################# navigation bar ############## -->
-    <nav>
-      <div class="nav-wrapper container">
-        <a href="#" class="brand-logo right">YouDo</a>
-        <ul>
-          <li class="logged-in"><a href="#" id="logout">Logout</a></li>
-          <li class="logged-in"><a href="#" id="user-email"></a></li>
-          <li class="logged-out"><a href="#" class="modal-trigger"
-              data-target="modal-login">Login</a></li>
-          <li class="logged-out"><a href="#" class="modal-trigger"
-              data-target="modal-signup">Signup</a></li>
-        </ul>
-      </div>
-    </nav>
-
+    <header>
+      <!-- ################# navigation bar ############## -->
+      <nav>
+        <div class="nav-wrapper container">
+          <a href="#" class="brand-logo right">YouDo</a>
+          <ul>
+            <li class="logged-in"><a href="#" id="logout">Logout</a></li>
+            <li class="logged-in"><a href="#" id="user-email"></a></li>
+            <li class="logged-out"><a href="#" class="modal-trigger"
+                data-target="modal-login">Login</a></li>
+            <li class="logged-out"><a href="#" class="modal-trigger"
+                data-target="modal-signup">Signup</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <!-- ############## add task form ############ -->
-    <div class="container">
-      <form action="" id="add-todo-form" class="logged-in" style="margin-top:30px;">
-        <input type="text" name="title" placeholder="Add task">
-        <button class="waves-effect waves-light btn">Add Task</button>
-      </form>
+    <main>
+      <div class="container">
+        <form action="" id="add-todo-form" class="logged-in"
+          style="margin-top:30px;">
+          <input type="text" name="title" placeholder="Add task">
+          <button class="waves-effect waves-light btn">Add Task</button>
+        </form>
 
-      <!-- ###### tasks list which will get appended from firestore ###### -->
-      <ul id="todo-list" class="collection" style="margin-top:20px;">
+        <!-- ###### tasks list which will get appended from firestore ###### -->
+        <ul id="todo-list" class="collection" style="margin-top:20px;">
 
-      </ul>
+        </ul>
 
-      <!-- ####### modals for login, signup, tasks modification ###### -->
-      <!-- Update Modal Structure -->
-      <div id="modal-edit" class="modal">
-        <div class="modal-content">
-          <input type="text" name="newtitle" placeholder="Update Task">
+        <!-- ####### modals for login, signup, tasks modification ###### -->
+        <!-- Update Modal Structure -->
+        <div id="modal-edit" class="modal">
+          <div class="modal-content">
+            <input type="text" name="newtitle" placeholder="Update Task">
+          </div>
+          <div class="modal-footer">
+            <a href="#!" id="update" style="margin: 0 30px 0 0;"
+              class="modal-close waves-effect waves-light btn">Update</a>
+          </div>
         </div>
-        <div class="modal-footer">
-          <a href="#!" id="update"
-          style="margin: 0 30px 0 0;" class="modal-close waves-effect waves-light btn">Update</a>
+
+        <!-- Login Modal Structure -->
+        <div id="modal-login" class="modal">
+          <div class="modal-content">
+            <h4 style="margin-bottom: 30px;">Login</h4>
+            <form action="" id="login-form">
+              <div class="input-field">
+                <input type="email" id="login-email" required>
+                <label>Email Address</label>
+              </div>
+              <div class="input-field">
+                <input type="password" id="login-password">
+                <label>Password</label>
+              </div>
+              <p class="error pink-text center-align"></p>
+              <div class="modal-footer">
+                <button href="#!" style="margin: 0 30px 0 0;"
+                  class="waves-effect waves-light btn">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Signup Modal Structure -->
+        <div id="modal-signup" class="modal">
+          <div class="modal-content">
+            <h4 style="margin-bottom: 30px;">Signup</h4>
+            <form action="" id="signup-form">
+              <div class="input-field">
+                <input type="email" id="signup-email" required>
+                <label>Email Address</label>
+              </div>
+              <div class="input-field">
+                <input type="password" id="signup-password">
+                <label>Password</label>
+              </div>
+              <p class="error pink-text center-align"></p>
+              <div class="modal-footer">
+                <button href="#!" style="margin: 0 30px 0 0;"
+                  class="waves-effect waves-light btn">Signup</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- ############### javascript code ############## -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+          });
+
+          // Your web app's Firebase configuration
+          var firebaseConfig = {
+            apiKey: "AIzaSyCBAn8BOdSiDRr87eM_-rKIZjdLpWglH94",
+            authDomain: "todolist-23b4e.firebaseapp.com",
+            projectId: "todolist-23b4e",
+            storageBucket: "todolist-23b4e.appspot.com",
+            messagingSenderId: "49410084061",
+            appId: "1:49410084061:web:400beb41e3c539c15adf34"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          const db = firebase.firestore();
+          const auth = firebase.auth();
+        </script>
+        <script src="app.js"></script>
+        <script src="auth.js"></script>
+
+      </div>
+    </main>
+
+    <!-- ################## footer ############### -->
+    <footer class="page-footer" style="padding-top: 0;">
+      <div class="container footer">
+        <div class="copyright">
+          <p>Copyright 2021 &copyYouDo</p>
+        </div>
+        <div class="developer">
+          <a class="grey-text text-lighten-4 right" href="#!">Mayank</a>
+          <li class="grey-text text-lighten-4 right"
+            style="list-style: none; padding-right: 5px;">
+            Developed by</li>
         </div>
       </div>
-
-      <!-- Login Modal Structure -->
-      <div id="modal-login" class="modal">
-        <div class="modal-content">
-          <h4 style="margin-bottom: 30px;">Login</h4>
-          <form action="" id="login-form">
-            <div class="input-field">
-              <input type="email" id="login-email" required>
-              <label>Email Address</label>
-            </div>
-            <div class="input-field">
-              <input type="password" id="login-password">
-              <label>Password</label>
-            </div>
-            <p class="error pink-text center-align"></p>
-            <div class="modal-footer">
-              <button href="#!" style="margin: 0 30px 0 0;"
-                class="waves-effect waves-light btn">Login</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <!-- Signup Modal Structure -->
-      <div id="modal-signup" class="modal">
-        <div class="modal-content">
-          <h4 style="margin-bottom: 30px;">Signup</h4>
-          <form action="" id="signup-form">
-            <div class="input-field">
-              <input type="email" id="signup-email" required>
-              <label>Email Address</label>
-            </div>
-            <div class="input-field">
-              <input type="password" id="signup-password">
-              <label>Password</label>
-            </div>
-            <p class="error pink-text center-align"></p>
-            <div class="modal-footer">
-              <button href="#!" style="margin: 0 30px 0 0;"
-                class="waves-effect waves-light btn">Signup</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <!-- ############### javascript code ############## -->
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          var elems = document.querySelectorAll('.modal');
-          var instances = M.Modal.init(elems);
-        });
-
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-          apiKey: "AIzaSyCBAn8BOdSiDRr87eM_-rKIZjdLpWglH94",
-          authDomain: "todolist-23b4e.firebaseapp.com",
-          projectId: "todolist-23b4e",
-          storageBucket: "todolist-23b4e.appspot.com",
-          messagingSenderId: "49410084061",
-          appId: "1:49410084061:web:400beb41e3c539c15adf34"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-      </script>
-      <script src="app.js"></script>
-      <script src="auth.js"></script>
-
-    </div>
+    </footer>
   </body>
 
 </html>
