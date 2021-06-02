@@ -57,6 +57,7 @@ updateBtn.addEventListener('click', e => {
     })
 })
 
+
 form.addEventListener('submit', e => {
     e.preventDefault()
     db.collection('alltodos').doc(currentUser.uid).collection('todos').add({
