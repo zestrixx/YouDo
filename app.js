@@ -49,14 +49,12 @@ function renderList(doc) {
     todoList.append(li)
 }
 
-
 updateBtn.addEventListener('click', e => {
     newTitle = document.getElementsByName('newtitle')[0].value
     db.collection('alltodos').doc(currentUser.uid).collection('todos').doc(updateId).update({
         title: newTitle
     })
 })
-
 
 form.addEventListener('submit', e => {
     e.preventDefault()
